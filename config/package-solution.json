@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "educos-api-spfx-client-side-solution",
+    "id": "760da95f-7f27-4eb4-969d-1d8750db6580",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.17.4"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "educos-api-spfx description"
+      },
+      "longDescription": {
+        "default": "educos-api-spfx description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "educos-api-spfx Feature",
+        "description": "The feature that activates elements of the educos-api-spfx solution.",
+        "id": "c09bd826-eb27-49d5-93cf-4a5e72ba4606",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/educos-api-spfx.sppkg"
+  }
+}

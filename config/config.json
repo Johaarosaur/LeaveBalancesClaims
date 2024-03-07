@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "leave-balances-and-claims-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/leaveBalancesAndClaims/LeaveBalancesAndClaimsWebPart.js",
+          "manifest": "./src/webparts/leaveBalancesAndClaims/LeaveBalancesAndClaimsWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "LeaveBalancesAndClaimsWebPartStrings": "lib/webparts/leaveBalancesAndClaims/loc/{locale}.js"
+  }
+}
