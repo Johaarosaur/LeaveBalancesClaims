@@ -2,17 +2,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Hosted workbench",
+      "name": "SPFx - Local Workbench",
       "type": "msedge",
       "request": "launch",
-      "url": "https://{tenantDomain}/_layouts/workbench.aspx",
-      "webRoot": "${workspaceRoot}",
+      "url": "https://eoh.sharepoint.com/_layouts/workbench.aspx",
+      "webRoot": "C:/Users/Johaar Omar/spfx folder main/Educos-API-spfx/src/webparts/leaveBalancesAndClaims",
       "sourceMaps": true,
       "sourceMapPathOverrides": {
-        "webpack:///.././src/*": "${webRoot}/src/*",
-        "webpack:///../../../src/*": "${webRoot}/src/*",
-        "webpack:///../../../../src/*": "${webRoot}/src/*",
-        "webpack:///../../../../../src/*": "${webRoot}/src/*"
+        "webpack:///src/*": "${webRoot}/*",
+        "webpack:///../src/*": "${webRoot}/*",
+        "webpack:///../../src/*": "${webRoot}/*",
+        "webpack:///../../../src/*": "${webRoot}/*",
+        "webpack:///../../../../src/*": "${webRoot}/*"
       },
       "runtimeArgs": [
         "--remote-debugging-port=9222",
@@ -21,3 +22,4 @@
     }
   ]
 }
+
