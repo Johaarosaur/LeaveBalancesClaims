@@ -8,6 +8,24 @@
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
+
+  // Add your container styles here
+  .header {
+    color: #0078d4;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .leaveInfo {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+
+    .annualLeave {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  }
 }
 
 .welcome {
