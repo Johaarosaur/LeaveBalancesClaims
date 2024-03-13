@@ -42,7 +42,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
         'Content-Type': 'application/json',
         
       },
-      credentials: 'include',
+      //credentials: 'include',
       body: JSON.stringify({
         "params": "'10004240'"
       }),
