@@ -7,19 +7,35 @@ export interface ILeaveBalance {
   availableBalance: string;
 }
 
+export interface IClaim {
+  Personcode: string;
+  EmployeeCode: string;
+  Paycode: string;
+  Reference: string;
+  ClaimValue: string;
+  ClaimType: string;
+  ClaimDescription: string;
+  ProcessType: string;
+  ClaimDate: string;
+  ProcessDate: string;
+  PayStatus: string;
+}
+
 interface ILeaveBalancesAndClaimsState {
   leaveDescription: string;
   availableBalance: string;
   authenticateKey: string;
+  outstandingClaims: string;
 }
 
-export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalancesAndClaimsProps, ILeaveBalancesAndClaimsState, ILeaveBalance> {
+export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalancesAndClaimsProps, ILeaveBalancesAndClaimsState> {
   constructor(props: ILeaveBalancesAndClaimsProps) {
     super(props);
     this.state = {
       authenticateKey: "",
       leaveDescription: "",
-      availableBalance: ""
+      availableBalance: "",
+      outstandingClaims: ""
     };
   }
 
@@ -27,6 +43,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
     try {
       await this.authenticate();
       await this.fetchLeaveBalances();
+      await this.fetchOutstandingClaims();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -40,9 +57,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       headers: {
         'vx-user-key': this.state.authenticateKey,
         'Content-Type': 'application/json',
-        
       },
-      //credentials: 'include',
       body: JSON.stringify({
         "params": "'10004240'"
       }),
@@ -67,6 +82,47 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
           }
         } else {
           console.error('Error: Invalid leave data');
+        }
+      } else {
+        throw new Error('Error: ' + response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  fetchOutstandingClaims = async (): Promise<void> => {
+    const baseURL = `https://eohapi.educos.co.za`;
+    const claimsEndpoint = `${baseURL}/collect/claims/`;
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      headers: {
+        'vx-user-key': this.state.authenticateKey,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "params": "'10004240'"
+      }),
+    };
+
+    try {
+      const response = await fetch(claimsEndpoint, requestOptions);
+
+      if (response.ok) {
+        const claimsData: IClaim[] = await response.json();
+
+        if (claimsData) {
+          const outstandingClaim = claimsData.find((claim: IClaim) => claim.ClaimValue === '915.0000');
+
+          if (outstandingClaim) {
+            this.setState({
+              outstandingClaims: outstandingClaim.ClaimValue,
+            });
+          } else {
+            console.error('Error: Outstanding claim data not found');
+          }
+        } else {
+          console.error('Error: Invalid claim data');
         }
       } else {
         throw new Error('Error: ' + response.statusText);
@@ -129,6 +185,11 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
                 <strong>Annual Leave Days Available:</strong> {this.state.availableBalance}
               </div>
             )}
+          </div>
+          <div className={styles.claimsInfo}>
+            <div className={styles.outstandingClaims}>
+              <strong>Outstanding Claims:</strong> {this.state.outstandingClaims}
+            </div>
           </div>
         </div>
       </section>
