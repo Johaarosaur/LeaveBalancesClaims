@@ -34,6 +34,13 @@ $ms-font-family-fallbacks: Arial, sans-serif; // Define font family fallbacks
 .annualLeave, .outstandingClaims {
   font-size: 14px;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.leaveText {
+  margin-right: 5px; /* Adjust spacing between icon and text */
+  
 }
 
 .teams {
@@ -43,7 +50,7 @@ $ms-font-family-fallbacks: Arial, sans-serif; // Define font family fallbacks
 }
 
 .icon {
-  height: 1em; /* Adjust this value as needed */
+  height: 2em; /* Adjust this value as needed */
   width: auto; /* Maintain aspect ratio */
   margin-right: 0.5em; /* Adjust spacing as needed */
 }

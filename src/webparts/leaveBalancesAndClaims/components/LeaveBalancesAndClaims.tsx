@@ -171,33 +171,33 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
   }
 
   public render(): React.ReactElement<ILeaveBalancesAndClaimsProps> {
-    const { hasTeamsContext } = this.props;
-    const { availableBalance, outstandingClaims } = this.state;
-  
-    return (
-      <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
-        <div className={styles.container}>
-          <h2 className={styles.header}>Leave Balances and Claims</h2>
-          <div className={styles.leaveInfo}>
-            {availableBalance && (
-              <div className={styles.annualLeave}>
-                <strong>
-                  <img src="/Images/LeaveBal.jpg" alt="Icon" className={styles.icon} />
-                  <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
-                </strong> {availableBalance}
-              </div>
-            )}
-          </div>
-          <div className={styles.claimsInfo}>
-            {outstandingClaims && (
-              <div className={styles.outstandingClaims}>
-                <strong>Outstanding Claims:</strong> {outstandingClaims}
-              </div>
-            )}
-          </div>
+  const { hasTeamsContext } = this.props;
+  const { availableBalance, outstandingClaims } = this.state;
+
+  return (
+    <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
+      <div className={styles.container}>
+        <h2 className={styles.header}>Leave Balances and Claims</h2>
+        <div className={styles.leaveInfo}>
+          {availableBalance && (
+            <div className={styles.annualLeave}>
+              <strong>
+                <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
+                <span className={styles.leaveText}>Annual Leave Days Available:</span>
+              </strong>
+              {availableBalance}
+            </div>
+          )}
         </div>
-      </section>
-    );
-  }
-  
+        <div className={styles.claimsInfo}>
+          {outstandingClaims && (
+            <div className={styles.outstandingClaims}>
+              <strong>Outstanding Claims:</strong> {outstandingClaims}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }
+}  
