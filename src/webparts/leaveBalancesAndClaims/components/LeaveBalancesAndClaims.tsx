@@ -179,11 +179,13 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       <div className={styles.container}>
         <h2 className={styles.header}>Leave Balances and Claims</h2>
         <div className={styles.leaveInfo}>
-          {availableBalance && (
+        {availableBalance && (
             <div className={styles.annualLeave}>
               <strong>
-                <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
-                <span className={styles.leaveText}>Annual Leave Days Available:</span>
+                <div className={styles.iconContainer}> {/* ADD A CONTAINER */}
+                  <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
+                  <span className={styles.leaveText}>Annual Leave Days Available:</span>
+                </div>
               </strong>
               {availableBalance}
             </div>

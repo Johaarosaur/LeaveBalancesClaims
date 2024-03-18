@@ -31,6 +31,15 @@ $ms-font-family-fallbacks: Arial, sans-serif; // Define font family fallbacks
   margin-bottom: 20px; /* Add margin between sections */
 }
 
+.iconContainer {
+  display: flex;
+  align-items: center; /* Align items vertically */
+}
+
+.leaveText {
+  margin-left: 0.5em; /* Adjust spacing between icon and text */
+}
+
 .annualLeave, .outstandingClaims {
   font-size: 14px;
   margin-top: 10px;
