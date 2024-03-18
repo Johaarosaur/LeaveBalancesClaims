@@ -171,28 +171,31 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
   }
 
   public render(): React.ReactElement<ILeaveBalancesAndClaimsProps> {
-    const {
-      hasTeamsContext
-    } = this.props;
-
+    const { hasTeamsContext } = this.props;
+    const { availableBalance, outstandingClaims } = this.state;
+  
     return (
       <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
-        <div className={styles.leaveBalancesAndClaims}>
-          <h2 className={styles.header}>Leave Balances</h2>
+        <div className={styles.container}>
+          <h2 className={styles.header}>Leave Balances and Claims</h2>
           <div className={styles.leaveInfo}>
-            {this.state.leaveDescription === 'Annual' && (
+            {availableBalance && (
               <div className={styles.annualLeave}>
-                <strong>Annual Leave Days Available:</strong> {this.state.availableBalance}
+                <strong>Annual Leave Days Available:</strong> {availableBalance}
               </div>
             )}
           </div>
           <div className={styles.claimsInfo}>
-            <div className={styles.outstandingClaims}>
-              <strong>Outstanding Claims:</strong> {this.state.outstandingClaims}
-            </div>
+            {outstandingClaims && (
+              <div className={styles.outstandingClaims}>
+                <strong>Outstanding Claims:</strong> {outstandingClaims}
+              </div>
+            )}
           </div>
         </div>
       </section>
     );
   }
+  
+
 }

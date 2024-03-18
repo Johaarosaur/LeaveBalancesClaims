@@ -1,45 +1,51 @@
-/* LeaveBalancesAndClaims.module.scss */
-
-@import '~@fluentui/react/dist/sass/References.scss';
+$ms-font-family-fallbacks: Arial, sans-serif; // Define font family fallbacks
 
 .leaveBalancesAndClaims {
   overflow: hidden;
   padding: 1em;
-  color: "[theme:bodyText, default: #323130]";
   color: var(--bodyText);
-  &.teams {
-    font-family: $ms-font-family-fallbacks;
-  }
 }
 
-/* Styling for Leave Balances */
+.container {
+  display: flex;
+  flex-direction: column; /* Change flex-direction to column */
+  align-items: flex-start;
+}
+
 .header {
-  color: #0078d4;
-  font-size: 24px;
+  color: #000000;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
-.leaveInfo {
-  background-color: #f4f4f4;
-  padding: 15px;
-  border-radius: 8px;
+.sectionHeader {
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
-.annualLeave {
-  font-size: 18px;
+.leaveInfo, .claimsInfo {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Add margin between sections */
+}
+
+.annualLeave, .outstandingClaims {
+  font-size: 14px;
   margin-top: 10px;
 }
 
-/* Styling for Claims */
-.claimsInfo {
-  background-color: #f9fafb;
-  padding: 15px;
-  border-radius: 8px;
-  margin-top: 20px; /* Adjust as needed */
+.teams {
+  /* Add styles for the teams context */
+  font-family: $ms-font-family-fallbacks; // Use the defined font family fallbacks
+  /* Additional styles for teams */
 }
 
-.outstandingClaims {
-  font-size: 18px;
-  color: #e20074; /* Change color as desired */
-}
+
+
+
+
+
+
 
