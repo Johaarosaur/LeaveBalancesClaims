@@ -42,6 +42,12 @@ $ms-font-family-fallbacks: Arial, sans-serif; // Define font family fallbacks
   /* Additional styles for teams */
 }
 
+.icon {
+  height: 1em; /* Adjust this value as needed */
+  width: auto; /* Maintain aspect ratio */
+  margin-right: 0.5em; /* Adjust spacing as needed */
+}
+
 
 
 

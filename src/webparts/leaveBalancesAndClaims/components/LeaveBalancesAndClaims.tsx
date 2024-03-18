@@ -181,7 +181,10 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
           <div className={styles.leaveInfo}>
             {availableBalance && (
               <div className={styles.annualLeave}>
-                <strong>Annual Leave Days Available:</strong> {availableBalance}
+                <strong>
+                  <img src="/Images/LeaveBal.jpg" alt="Icon" className={styles.icon} />
+                  <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
+                </strong> {availableBalance}
               </div>
             )}
           </div>
@@ -197,5 +200,4 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
     );
   }
   
-
 }
