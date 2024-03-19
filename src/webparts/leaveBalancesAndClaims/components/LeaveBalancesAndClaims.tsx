@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styles from './LeaveBalancesAndClaims.module.scss';
 import { ILeaveBalancesAndClaimsProps } from './ILeaveBalancesAndClaimsProps';
+//import { Client } from '@microsoft/microsoft-graph-client';
 
 export interface ILeaveBalance {
   leaveDescription: string;
@@ -38,6 +39,31 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       outstandingClaims: ""
     };
   }
+
+  // // INTEGRATING MICROSOFT GRAPH API FOR USER DETAILS
+  // getGraphUserDetails = async () => {
+  //   const graphEndpoint = "https://graph.microsoft.com/v1.0/me";
+
+  //   try {
+  //     const response = await fetch(graphEndpoint, {
+  //       method: 'GET',
+  //       headers: {
+  //         'Authorization': `Bearer ${this.state.authenticateKey}`,
+  //       },
+  //     });
+
+  //     if (response.ok) {
+  //       const userData = await response.json();
+  //       console.log('User Data:', userData);
+  //       // Now you can extract the GID from the user data and set it in state
+        
+  //     } else {
+  //       throw new Error('Error:' + response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  //}
 
   async componentDidMount(): Promise<void> {
     try {
@@ -179,12 +205,14 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       <div className={styles.container}>
         <h2 className={styles.header}>Leave Balances and Claims</h2>
         <div className={styles.leaveInfo}>
-        {availableBalance && (
+          {availableBalance && (
             <div className={styles.annualLeave}>
               <strong>
-                <div className={styles.iconContainer}> {/* ADD A CONTAINER */}
+                <div className={styles.iconContainer}>
                   <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
-                  <span className={styles.leaveText}>Annual Leave Days Available:</span>
+                  <span className={styles.leaveText}>
+                    <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
+                  </span>
                 </div>
               </strong>
               {availableBalance}
@@ -201,5 +229,35 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       </div>
     </section>
   );
+  return (
+    <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
+      <div className={styles.container}>
+        <h2 className={styles.header}>Leave Balances and Claims</h2>
+        <div className={styles.leaveInfo}>
+          {availableBalance && (
+            <div className={styles.annualLeave}>
+              <strong>
+                <div className={styles.iconContainer}>
+                  <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
+                  <span className={styles.leaveText}>
+                    <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
+                  </span>
+                </div>
+              </strong>
+              {availableBalance}
+            </div>
+          )}
+        </div>
+        <div className={styles.claimsInfo}>
+          {outstandingClaims && (
+            <div className={styles.outstandingClaims}>
+              <strong>Outstanding Claims:</strong> {outstandingClaims}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+    
 }
 }  
