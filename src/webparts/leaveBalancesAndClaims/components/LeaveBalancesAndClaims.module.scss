@@ -34,7 +34,19 @@ $ms-font-family-fallbacks: Arial, sans-serif;
 .iconContainer {
   display: flex;
   align-items: center;
+
 }
+.totalClaims {
+  font-size: 14px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.claimsProcessType {
+  width: 120px; /* Set a fixed width */
+}
+
 
 .leaveText {
   margin-left: 0.5em;

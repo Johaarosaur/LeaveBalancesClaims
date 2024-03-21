@@ -222,19 +222,16 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
             )}
           </div>
           <div className={styles.claimsInfo}>
-  {totalClaimsValue !== 0 && (
-    <>
-      <div className={styles.claimsProcessType}>
-        <strong>Claims Process Type:</strong>&nbsp;Paid with Salary {/* Add space after the colon */}
-      </div>
-      <div className={styles.totalClaimsValue}>
-        <strong>Total Claims Value:</strong>&nbsp;{totalClaimsValue.toFixed(2)} {/* Add space after the colon */}
-      </div>
-    </>
-  )}
-</div>
+            {totalClaimsValue !== 0 && (
+              <div className={styles.totalClaims}>
+                <strong>Total Claims Value:</strong>&nbsp;<span>{totalClaimsValue.toFixed(2)}</span>&nbsp;(Paid with Salary)
+              </div>
+            )}
+          </div>
         </div>
       </section>
     );
   }
+  
+  
 }
