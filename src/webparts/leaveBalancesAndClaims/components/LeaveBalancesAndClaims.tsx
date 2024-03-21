@@ -224,7 +224,15 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
           <div className={styles.claimsInfo}>
             {totalClaimsValue !== 0 && (
               <div className={styles.totalClaims}>
-                <strong>Total Claims Value:</strong>&nbsp;<span>{totalClaimsValue.toFixed(2)}</span>&nbsp;(Paid with Salary)
+                <strong>
+                  <div className={styles.iconContainer}>
+                    <img src="/sites/intranetx/SiteAssets/SalaryClaims.jpeg" alt="Icon" className={styles.icon} />
+                    <span className={styles.leaveText}>
+                      <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Total Claims Value:</a>
+                    </span>
+                  </div>
+                </strong>
+                &nbsp;<span>{totalClaimsValue.toFixed(2)}</span>&nbsp;(Paid with Salary)
               </div>
             )}
           </div>
