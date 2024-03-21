@@ -27,6 +27,7 @@ interface ILeaveBalancesAndClaimsState {
   availableBalance: string;
   authenticateKey: string;
   outstandingClaims: string;
+  totalClaimsValue: number;
 }
 
 export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalancesAndClaimsProps, ILeaveBalancesAndClaimsState> {
@@ -36,7 +37,8 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       authenticateKey: "",
       leaveDescription: "",
       availableBalance: "",
-      outstandingClaims: ""
+      outstandingClaims: "",
+      totalClaimsValue: 0, // INITIALIZE TOTAL CLAIMS VALUE TO 0
     };
   }
 
@@ -138,15 +140,15 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
         const claimsData: IClaim[] = await response.json();
 
         if (claimsData) {
-          const outstandingClaim = claimsData.find((claim: IClaim) => claim.ClaimValue === '915.0000');
-
-          if (outstandingClaim) {
-            this.setState({
-              outstandingClaims: outstandingClaim.ClaimValue,
-            });
-          } else {
-            console.error('Error: Outstanding claim data not found');
-          }
+          let totalValue = 0; // VARIABLE TO STORE TOTAL CLAIMS VALUE
+          claimsData.forEach((claim: IClaim) => {
+            if (claim.ProcessType === 'Paid with Salary') {
+              totalValue += parseFloat(claim.ClaimValue); // ADD CLAIM VALUE TO TOTAL IF PROCESS TYPE IS 'Paid with Salary'
+            }
+          });
+          this.setState({
+            totalClaimsValue: totalValue, // SET TOTAL CLAIMS VALUE IN STATE
+          });
         } else {
           console.error('Error: Invalid claim data');
         }
@@ -197,67 +199,42 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
   }
 
   public render(): React.ReactElement<ILeaveBalancesAndClaimsProps> {
-  const { hasTeamsContext } = this.props;
-  const { availableBalance, outstandingClaims } = this.state;
-
-  return (
-    <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
-      <div className={styles.container}>
-        <h2 className={styles.header}>Leave Balances and Claims</h2>
-        <div className={styles.leaveInfo}>
-          {availableBalance && (
-            <div className={styles.annualLeave}>
-              <strong>
-                <div className={styles.iconContainer}>
-                  <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
-                  <span className={styles.leaveText}>
-                    <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
-                  </span>
-                </div>
-              </strong>
-              {availableBalance}
-            </div>
-          )}
-        </div>
-        <div className={styles.claimsInfo}>
-          {outstandingClaims && (
-            <div className={styles.outstandingClaims}>
-              <strong>Outstanding Claims:</strong> {outstandingClaims}
-            </div>
-          )}
-        </div>
+    const { hasTeamsContext } = this.props;
+    const { availableBalance, totalClaimsValue } = this.state;
+  
+    return (
+      <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
+        <div className={styles.container}>
+          <h2 className={styles.header}>Leave Balances and Claims</h2>
+          <div className={styles.leaveInfo}>
+            {availableBalance && (
+              <div className={styles.annualLeave}>
+                <strong>
+                  <div className={styles.iconContainer}>
+                    <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
+                    <span className={styles.leaveText}>
+                      <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
+                    </span>
+                  </div>
+                </strong>
+                {availableBalance}
+              </div>
+            )}
+          </div>
+          <div className={styles.claimsInfo}>
+  {totalClaimsValue !== 0 && (
+    <>
+      <div className={styles.claimsProcessType}>
+        <strong>Claims Process Type:</strong>&nbsp;Paid with Salary {/* Add space after the colon */}
       </div>
-    </section>
-  );
-  return (
-    <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
-      <div className={styles.container}>
-        <h2 className={styles.header}>Leave Balances and Claims</h2>
-        <div className={styles.leaveInfo}>
-          {availableBalance && (
-            <div className={styles.annualLeave}>
-              <strong>
-                <div className={styles.iconContainer}>
-                  <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
-                  <span className={styles.leaveText}>
-                    <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Annual Leave Days Available:</a>
-                  </span>
-                </div>
-              </strong>
-              {availableBalance}
-            </div>
-          )}
-        </div>
-        <div className={styles.claimsInfo}>
-          {outstandingClaims && (
-            <div className={styles.outstandingClaims}>
-              <strong>Outstanding Claims:</strong> {outstandingClaims}
-            </div>
-          )}
-        </div>
+      <div className={styles.totalClaimsValue}>
+        <strong>Total Claims Value:</strong>&nbsp;{totalClaimsValue.toFixed(2)} {/* Add space after the colon */}
       </div>
-    </section>
-  );
-    
+    </>
+  )}
+</div>
+        </div>
+      </section>
+    );
+  }
 }
-}  
