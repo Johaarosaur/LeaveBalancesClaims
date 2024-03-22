@@ -208,7 +208,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
           <h2 className={styles.header}>Leave Balances and Claims</h2>
           <div className={styles.leaveInfo}>
             {availableBalance && (
-              <div className={styles.annualLeave}>
+              <div className={styles.totalClaims}> {/* Change class name to totalClaims */}
                 <strong>
                   <div className={styles.iconContainer}>
                     <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
@@ -217,7 +217,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
                     </span>
                   </div>
                 </strong>
-                {availableBalance}
+                &nbsp;<span>{availableBalance}</span> {/* Add a space and remove the <div> tag */}
               </div>
             )}
           </div>
@@ -240,6 +240,4 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
       </section>
     );
   }
-  
-  
 }

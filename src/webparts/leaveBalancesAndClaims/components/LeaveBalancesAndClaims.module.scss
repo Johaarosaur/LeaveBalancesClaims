@@ -4,6 +4,7 @@ $ms-font-family-fallbacks: Arial, sans-serif;
   overflow: hidden;
   padding: 1em;
   color: var(--bodyText);
+  margin-bottom: 10px; /* Add margin-bottom to increase distance between web parts */
 }
 
 .container {
@@ -24,7 +25,6 @@ $ms-font-family-fallbacks: Arial, sans-serif;
 }
 
 .leaveInfo, .claimsInfo {
-  flex: 1;
   background-color: #ffffff;
   padding: 15px;
   border-radius: 8px;
@@ -34,7 +34,35 @@ $ms-font-family-fallbacks: Arial, sans-serif;
 .iconContainer {
   display: flex;
   align-items: center;
+}
 
+.leaveText {
+  margin-left: 0.5em;
+  margin-right: 5px;
+}
+
+.annualLeave, .outstandingClaims, .claimsProcessType, .totalClaimsValue {
+  font-size: 14px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.teams {
+  font-family: $ms-font-family-fallbacks;
+}
+
+.icon {
+  height: 3em;
+  width: 3em;
+  margin-right: 0.5em;
+}
+
+.leaveClaimsContainer {
+  display: flex;
+}
+
+.leaveItem, .claimsItem {
+  margin-right: 20px; /* Add margin-right to increase distance between Leave Balances and Claims */
 }
 .totalClaims {
   font-size: 14px;
@@ -48,27 +76,11 @@ $ms-font-family-fallbacks: Arial, sans-serif;
 }
 
 
-.leaveText {
-  margin-left: 0.5em;
-  margin-right: 5px;
-}
 
-.annualLeave, .outstandingClaims, .claimsProcessType, .totalClaimsValue {
-  font-size: 14px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-}
 
-.teams {
-  font-family: $ms-font-family-fallbacks;
-}
 
-.icon {
-  height: 3em;
-  width: 3em;
-  margin-right: 0.5em;
-}
+
+
 
 
 
