@@ -87,7 +87,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "params": "'10004240'"
+        "params": "'10054830'"
       }),
     };
 
@@ -129,7 +129,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "params": "'10004240'"
+        "params": "'10054830'"
       }),
     };
 
@@ -162,7 +162,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
 
   authenticate = async (): Promise<void> => {
     const baseURL = `https://eohapi.educos.co.za`;
-    const GID = "10004240";  // Updated GID value
+    const GID = "10054830";  // Updated GID value
     const authEndpoint = `${baseURL}/auth/${GID}`;
     const authUser = 'SharepAPI';
     const authKey = 'E6DA5F46B97C059E2E9200EAE71E23FE4FCC52888F96847B42DD65819FE536A1';
@@ -208,7 +208,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
           <h2 className={styles.header}>Leave Balances and Claims</h2>
           <div className={styles.leaveInfo}>
             {availableBalance && (
-              <div className={styles.totalClaims}> {/* Change class name to totalClaims */}
+              <div className={styles.totalClaims}>
                 <strong>
                   <div className={styles.iconContainer}>
                     <img src="/sites/intranetx/SiteAssets/LeaveBal.png" alt="Icon" className={styles.icon} />
@@ -217,12 +217,13 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
                     </span>
                   </div>
                 </strong>
-                &nbsp;<span>{availableBalance}</span> {/* Add a space and remove the <div> tag */}
+                &nbsp;<span>{availableBalance}</span>
               </div>
             )}
           </div>
           <div className={styles.claimsInfo}>
-            {totalClaimsValue !== 0 && (
+            {/* Conditional rendering for total claims value */}
+            {totalClaimsValue !== 0 ? (
               <div className={styles.totalClaims}>
                 <strong>
                   <div className={styles.iconContainer}>
@@ -233,6 +234,18 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
                   </div>
                 </strong>
                 &nbsp;<span>{totalClaimsValue.toFixed(2)}</span>&nbsp;(Paid with Salary)
+              </div>
+            ) : (
+              <div className={styles.totalClaims}>
+                <strong>
+                  <div className={styles.iconContainer}>
+                    <img src="/sites/intranetx/SiteAssets/SalaryClaims.jpeg" alt="Icon" className={styles.icon} />
+                    <span className={styles.leaveText}>
+                      <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Total Claims Value:</a>
+                    </span>
+                  </div>
+                </strong>
+                &nbsp;<span>Zero</span>&nbsp;(Paid with Salary)
               </div>
             )}
           </div>
