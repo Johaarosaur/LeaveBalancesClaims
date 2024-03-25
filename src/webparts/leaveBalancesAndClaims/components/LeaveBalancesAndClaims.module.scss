@@ -15,7 +15,8 @@ $ms-font-family-fallbacks: Arial, sans-serif;
 
 .header {
   color: #000000;
-  font-size: 18px;
+  font-size: 20px; /* Increase font size */
+  font-weight: 600; /* Use semi-bold (600) instead of bold */
   margin-bottom: 10px;
 }
 
@@ -55,6 +56,7 @@ $ms-font-family-fallbacks: Arial, sans-serif;
   height: 3em;
   width: 3em;
   margin-right: 0.5em;
+  border-radius: 25%; /* Apply border-radius to create rounded edges */
 }
 
 .leaveClaimsContainer {
