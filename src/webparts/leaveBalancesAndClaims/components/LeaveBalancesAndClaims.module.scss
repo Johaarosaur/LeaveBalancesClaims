@@ -64,6 +64,8 @@ $ms-font-family-fallbacks: Arial, sans-serif;
 .leaveItem, .claimsItem {
   margin-right: 20px; /* Add margin-right to increase distance between Leave Balances and Claims */
 }
+
+/* New styling classes for leave balances and claims */
 .totalClaims {
   font-size: 14px;
   margin-top: 10px;
@@ -71,9 +73,18 @@ $ms-font-family-fallbacks: Arial, sans-serif;
   align-items: center;
 }
 
-.claimsProcessType {
-  width: 120px; /* Set a fixed width */
+.info {
+  margin-right: 20px; /* Add margin-right to increase distance between Leave Balances and Claims */
 }
+
+.content {
+  display: flex;
+}
+
+.info:first-child {
+  margin-right: 20px; /* Add margin-right to separate Leave Balances and Claims */
+}
+
 
 
 

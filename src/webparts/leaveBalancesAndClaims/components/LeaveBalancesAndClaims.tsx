@@ -201,13 +201,15 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
   public render(): React.ReactElement<ILeaveBalancesAndClaimsProps> {
     const { hasTeamsContext } = this.props;
     const { availableBalance, totalClaimsValue } = this.state;
+    const currencySymbol = totalClaimsValue !== 0 ? 'R' : ''; // Conditional rendering for currency symbol
   
     return (
       <section className={`${styles.leaveBalancesAndClaims} ${hasTeamsContext ? styles.teams : ''}`}>
         <div className={styles.container}>
           <h2 className={styles.header}>Leave Balances and Claims</h2>
-          <div className={styles.leaveInfo}>
-            {availableBalance && (
+          <div className={styles.content}>
+            {/* Leave Balances */}
+            <div className={styles.info}>
               <div className={styles.totalClaims}>
                 <strong>
                   <div className={styles.iconContainer}>
@@ -219,35 +221,37 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
                 </strong>
                 &nbsp;<span>{availableBalance}</span>
               </div>
-            )}
-          </div>
-          <div className={styles.claimsInfo}>
-            {/* Conditional rendering for total claims value */}
-            {totalClaimsValue !== 0 ? (
-              <div className={styles.totalClaims}>
-                <strong>
-                  <div className={styles.iconContainer}>
-                    <img src="/sites/intranetx/SiteAssets/SalaryClaims.jpeg" alt="Icon" className={styles.icon} />
-                    <span className={styles.leaveText}>
-                      <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Total Claims Value:</a>
-                    </span>
-                  </div>
-                </strong>
-                &nbsp;<span>{totalClaimsValue.toFixed(2)}</span>&nbsp;(Paid with Salary)
-              </div>
-            ) : (
-              <div className={styles.totalClaims}>
-                <strong>
-                  <div className={styles.iconContainer}>
-                    <img src="/sites/intranetx/SiteAssets/SalaryClaims.jpeg" alt="Icon" className={styles.icon} />
-                    <span className={styles.leaveText}>
-                      <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Total Claims Value:</a>
-                    </span>
-                  </div>
-                </strong>
-                &nbsp;<span>Zero</span>&nbsp;(Paid with Salary)
-              </div>
-            )}
+            </div>
+            
+            {/* Claims Info */}
+            <div className={styles.info}>
+              {/* Conditional rendering for total claims value */}
+              {totalClaimsValue !== 0 ? (
+                <div className={styles.totalClaims}>
+                  <strong>
+                    <div className={styles.iconContainer}>
+                      <img src="/sites/intranetx/SiteAssets/SalaryClaims.jpeg" alt="Icon" className={styles.icon} />
+                      <span className={styles.leaveText}>
+                        <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Total Claims Value:</a>
+                      </span>
+                    </div>
+                  </strong>
+                  &nbsp;<span>{currencySymbol}{totalClaimsValue.toFixed(2)}</span>&nbsp;(Paid with Salary)
+                </div>
+              ) : (
+                <div className={styles.totalClaims}>
+                  <strong>
+                    <div className={styles.iconContainer}>
+                      <img src="/sites/intranetx/SiteAssets/SalaryClaims.jpeg" alt="Icon" className={styles.icon} />
+                      <span className={styles.leaveText}>
+                        <a href="https://myess.eoh.co.za/" target="_blank" rel="noopener noreferrer">Total Claims Value:</a>
+                      </span>
+                    </div>
+                  </strong>
+                  &nbsp;<span>Zero</span>&nbsp;(Paid with Salary)
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
