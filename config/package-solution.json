@@ -3,7 +3,7 @@
   "solution": {
     "name": "educos-api-spfx-client-side-solution",
     "id": "760da95f-7f27-4eb4-969d-1d8750db6580",
-    "version": "1.0.0.1",
+    "version": "1.0.0.4",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -30,7 +30,7 @@
         "title": "educos-api-spfx Feature",
         "description": "The feature that activates elements of the educos-api-spfx solution.",
         "id": "c09bd826-eb27-49d5-93cf-4a5e72ba4606",
-        "version": "1.0.0.1"
+        "version": "1.0.0.4"
       }
     ]
   },

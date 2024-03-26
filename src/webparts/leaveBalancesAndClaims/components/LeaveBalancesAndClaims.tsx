@@ -87,7 +87,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "params": "'10054830'"
+        "params": "'10004240'"
       }),
     };
 
@@ -129,7 +129,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "params": "'10054830'"
+        "params": "'10004240'"
       }),
     };
 
@@ -162,7 +162,7 @@ export default class LeaveBalancesAndClaims extends React.Component<ILeaveBalanc
 
   authenticate = async (): Promise<void> => {
     const baseURL = `https://eohapi.educos.co.za`;
-    const GID = "10054830";  // Updated GID value
+    const GID = "10004240";  // Updated GID value
     const authEndpoint = `${baseURL}/auth/${GID}`;
     const authUser = 'SharepAPI';
     const authKey = 'E6DA5F46B97C059E2E9200EAE71E23FE4FCC52888F96847B42DD65819FE536A1';
